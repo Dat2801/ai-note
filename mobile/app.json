@@ -9,7 +9,7 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "vn.ainote.app",
+      "bundleIdentifier": "com.dat2801.ainote",
       "infoPlist": {
         "NSLocalNetworkUsageDescription": "AI Note cần kết nối máy chủ AI trong mạng nội bộ khi phát triển."
       }
