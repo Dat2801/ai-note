@@ -105,7 +105,7 @@ npx eas-cli@latest build -p android --profile preview      # lần đầu: chọ
 
 ### Tự build APK khi tạo phiên bản (GitHub Actions)
 1. expo.dev → Account settings → **Access tokens** → tạo token.
-2. GitHub repo → Settings → Secrets → Actions → thêm `EXPO_TOKEN`.
+2. GitHub repo → Settings → Secrets → Actions → thêm `TOKEN_EXPO`.
 3. Tạo phiên bản:
    ```bash
    git tag v0.3.0 && git push --tags

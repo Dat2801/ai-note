@@ -25,7 +25,7 @@ jobs:
       - uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+          token: ${{ secrets.TOKEN_EXPO }}
       - run: npm ci
 
       - name: Build APK trên EAS
