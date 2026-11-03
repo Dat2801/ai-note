@@ -11,11 +11,11 @@
     "preview": {
       "distribution": "internal",
       "android": { "buildType": "apk" },
-      "env": { "EXPO_PUBLIC_API_URL": "https://ai-note-backend.onrender.com" }
+      "env": { "EXPO_PUBLIC_API_URL": "https://ai-note-backend-louf.onrender.com" }
     },
     "production": {
       "autoIncrement": true,
-      "env": { "EXPO_PUBLIC_API_URL": "https://ai-note-backend.onrender.com" }
+      "env": { "EXPO_PUBLIC_API_URL": "https://ai-note-backend-louf.onrender.com" }
     }
   },
   "submit": {

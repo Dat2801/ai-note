@@ -25,6 +25,10 @@ function requireToken(req: Request, res: Response, next: NextFunction) {
   res.status(401).json({ error: "Sai hoặc thiếu x-app-token" });
 }
 
+app.get("/", (_req, res) => {
+  res.type("text").send("AI Note backend đang chạy. Kiểm tra trạng thái tại /health");
+});
+
 app.get("/health", (_req, res) => {
   res.json({
     status: "ok",
