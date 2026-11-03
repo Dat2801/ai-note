@@ -1,0 +1,24 @@
+# Deploy backend lên Render: Dashboard → New → Blueprint → chọn repo này
+services:
+  - type: web
+    name: ai-note-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false # nhập trên Render khi tạo, không lưu trong repo
+      - key: APP_TOKEN
+        sync: false # đặt cùng giá trị với EXPO_PUBLIC_APP_TOKEN của app
+      - key: OPENAI_TRANSCRIPTION_MODEL
+        value: gpt-transcribe
+      - key: OPENAI_TEXT_MODEL
+        value: gpt-6-luna
+      - key: TRANSCRIPTION_LANGUAGE
+        value: vi
+      - key: HOST
+        value: 0.0.0.0

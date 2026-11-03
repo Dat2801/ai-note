@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "AI Note",
+    "slug": "ai-note",
+    "scheme": "ainote",
+    "version": "0.3.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "vn.ainote.app",
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "AI Note cần kết nối máy chủ AI trong mạng nội bộ khi phát triển."
+      }
+    },
+    "android": {
+      "package": "vn.ainote.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "AI Note cần dùng micro để ghi âm cuộc họp, bài giảng và chuyển thành ghi chú."
+        }
+      ],
+      "expo-sharing"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

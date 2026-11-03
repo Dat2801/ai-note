@@ -1,0 +1,54 @@
+# Push tag v* (vd: git tag v0.3.0 && git push --tags) → EAS build APK → đính vào GitHub Release
+name: Release Android APK
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+
+      - name: Build APK trên EAS
+        run: eas build --platform android --profile preview --non-interactive --wait --json > build.json
+
+      - name: Tải APK
+        run: |
+          URL=$(jq -r '.[0].artifacts.buildUrl' build.json)
+          curl -L "$URL" -o ai-note.apk
+
+      - name: Tạo GitHub Release
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            gh release create "$TAG" mobile/ai-note.apk --title "AI Note $TAG" --generate-notes
+          else
+            echo "Chạy thủ công: APK chỉ được lưu làm artifact"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ai-note-apk
+          path: mobile/ai-note.apk
